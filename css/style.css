@@ -1732,8 +1732,30 @@ to { -webkit-transform: rotateX(143deg) rotateY(50deg) rotateZ(0); transform: ro
 .pricing-plan { border-bottom: 1px solid #e1f1ff; padding: 25px; }
 .pricing-plan:last-child { border-bottom: none; }
 @media (min-width:900px) {
+    
 .pricing-plan { border-bottom: none; border-right: 1px solid #e1f1ff; flex-basis: 100%; padding: 25px 50px; }
 .pricing-plan:last-child { border-right: none; }
+    
+   
+}
+
+
+@media (min-width:1900px) {
+
+#bounce-circle{
+   left: 24vw; 
+}
+
+}
+
+@media (max-width:899px){
+     #logo-menu-1{
+        width: 70%
+    }
+    
+    #laptop-banner-front{
+        width: 100% !important;
+    }
 }
 .pricing-img { margin-bottom: 25px; max-width: 100%; }
 .pricing-header { color: #888; font-weight: 600; letter-spacing: 1px; }
