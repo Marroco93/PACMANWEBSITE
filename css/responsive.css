@@ -14,6 +14,19 @@ NOTE: This file contains the styling for responsive Template.
  (  Media Queries  )
 ================================================
  *******************/
+
+
+
+@media only screen and (min-width: 1750px) {
+.img-big{
+        width: 68% !important;
+    margin-top: 40px;
+    margin-left: 13vw !important;
+
+}
+}
+
+
 @media(min-width:1601px) {
  .get-feature img { width: 74%; } }
 @media(max-width:1399px) {
