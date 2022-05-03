@@ -1,0 +1,911 @@
+<!doctype html>
+<html lang="en">
+
+    <head>
+        <!-- Required meta tags -->
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <title>Pacman Software - Claim Management</title>
+        <!-- Favicon -->
+        <link rel="shortcut icon" href="images/fav/favicon.ico" />
+        <!-- Google Fonts -->
+        <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,800&amp;Raleway:300,400,500,600,700,800,900" rel="stylesheet">
+        <!-- Bootstrap CSS -->
+        <link rel="stylesheet" href="css/bootstrap.min.css">
+        <!-- owl-carousel -->
+        <link rel="stylesheet" href="css/owl-carousel/owl.carousel.css" />
+        <!-- Font Awesome -->
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" />
+        <!-- Magnific Popup -->
+        <link rel="stylesheet" href="css/magnific-popup/magnific-popup.css" />
+        <!-- media element player -->
+        <link href="css/mediaelementplayer.min.css" rel="stylesheet" type="text/css" />
+        <!-- Animate -->
+        <link rel="stylesheet" href="css/animate.css" />
+        <!-- Ionicons -->
+        <link rel="stylesheet" href="css/ionicons.min.css">
+        <!-- Style -->
+        <link rel="stylesheet" href="css/style.css">
+        <!-- Responsive -->
+        <link rel="stylesheet" href="css/responsive.css">
+        <!-- custom style -->
+        <link rel="stylesheet" href="css/custom.css" />
+
+
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+
+
+
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.1/css/bootstrap.css" rel="stylesheet" type="text/css" />
+
+        <style>
+            .form-progress {
+                width: 50%;
+                height: 64px;
+                display: flex;
+                justify-content: space-between;
+                margin: 0 auto;
+            }
+
+            .form-progress::before {
+                content: "";
+                width: calc(50% - 47px);
+                border-top: 2px solid #bee1ff;
+                position: absolute;
+                top: 50%;
+                margin-left: 16px;
+                transform: translateY(-50%);
+                z-index: -100;
+            }
+
+            .step {
+                width: 16px;
+                height: 16px;
+                border-radius: 8px;
+                border: 2px solid #bee1ff;
+                background: white;
+                margin-top: 24px;
+            }
+
+            .step-current {
+                border: 2px solid #49d469;
+            }
+
+            .step-current::before {
+                content: "";
+                position: absolute;
+                top: 50%;
+                margin-left: 6px;
+                width: 8px;
+                height: 8px;
+                border-radius: 4px;
+                background: #49d469;
+                transform: translate(-50%, -50%);
+            }
+
+            .step-done {
+                font-size: 0.75rem;
+                color: white;
+                border: 2px solid #49d469;
+                background: #49d469;
+            }
+
+            .step-done > i {
+                position: relative;
+                top: -2px;
+                z-index: 100;
+            }
+
+            .font-title {
+                font-size: 42px;
+                font-weight: 300;
+            }
+
+            .font-subtitle {
+                font-size: 18px;
+                font-weight: 300;
+            }
+
+            .font-label {
+                font-size: 14px;
+                font-weight: 400;
+                background: #f5a623;
+                border-radius: 4px;
+                padding: 3px 8px;
+                color: white;
+                float: right;
+                transform: translate(100%, -50%);
+                position: relative;
+                right: -40px;
+                bottom: 25px;
+            }
+
+            .font-label::before {
+                content: "";
+                position: absolute;
+                width: 0;
+                height: 0;
+                border-style: solid;
+                border-width: 4px 6px 4px 0;
+                border-color: transparent #f5a623 transparent transparent;
+                margin: 6px 0px 0px -14px;
+            }
+
+            .font-optional::after {
+                content: " (optional)";
+                font-size: 16px;
+                font-weight: 300;
+            }
+
+            .font-final {
+                font-size: 20px;
+                font-weight: 400;
+                font-style: italic;
+                color: #94da85;
+                margin-bottom: 50px;
+            }
+
+            .upload-file {
+                background: white;
+                color: #9b9b9b;
+                display: flex;
+                justify-content: space-around;
+                padding: 48px 64px;
+                cursor: pointer;
+            }
+
+            .upload-file > i {
+                font-size: 64px;
+            }
+
+            .warning {
+                border: 2px solid #f5a623 !important;
+            }
+
+            .sign {
+                transform: translateY(-50%);
+                position: relative;
+                top: -26px;
+                float: right;
+                right: 18px;
+                font-size: 20px;
+                color: #f5a623;
+            }
+
+            .smile {
+                font-size: 20rem;
+                color: #a6ed97;
+                line-height: 0.75;
+                margin-bottom: 50px;
+            }
+
+            /* Overwrite BS4 CSS */
+
+            label {
+                font-size: 20px;
+                font-weight: 400;
+            }
+
+            .form-control {
+                border: 1px solid #cececea1;
+                border-radius: 8px;
+                box-shadow: rgba(0, 0, 0, 0.18) 0px 2px 4px;
+            }
+
+            .btn {
+                width: 100%;
+                padding: 10px 0px;
+            }
+
+            .btn:disabled {
+                background: #8ed9c1;
+                border-color: #8ed9c1;
+                border-radius: 8px;
+            }
+
+
+        </style>
+
+    </head>
+
+    <body data-spy="scroll" data-offset="80">
+        <!-- loading -->
+        <div id="loading">
+            <div id="loading-center">
+                <div class="loader">
+                    <div class="cube">
+                        <div class="sides">
+                            <div class="top"></div>
+                            <div class="right"></div>
+                            <div class="bottom"></div>
+                            <div class="left"></div>
+                            <div class="front"></div>
+                            <div class="back"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- loading End -->
+        <!-- Header -->
+        <header id="main-header">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <nav class="navbar navbar-expand-lg navbar-light">
+                            <a class="navbar-brand" href="#" id="logo-menu-1">
+                                <img class="img-fluid" src="images/logo/pacman-white.svg" alt="#" >
+                            </a>
+                            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                                <span class="ion-navicon"></span>
+                            </button>
+                            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                                <ul class="navbar-nav mr-auto w-100 justify-content-end">
+                                    <li class="nav-item">
+                                        <a class="nav-link active" href="https://www.pacmansoftware.com">Home</a>
+                                    </li>
+
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="https://www.pacsoftserver.com"><small>Log In</small></a>
+                                    </li>
+                                </ul>
+                                
+                            </div>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </header>
+        <!-- Header End -->
+        <!-- Banner -->
+        <section id="iq-home" class="iq-banner overview-block-pt iq-bg-over iq-over-blue-90 iq-parallax pb-5" data-jarallax='{"speed": 0.6}' style="background: url(images/bg/background.jpg); min-height: 98vh;">
+            <!-- BACKGROUND PARTICLES -->
+
+
+
+
+
+
+            <!--            insert form here-->
+
+            <div class="container">
+                <div class="row" style="border-top: 3px solid #0275d8;">
+                    <div class="col"></div>
+                    <div class="col-sm-10 col-md-8 col-lg-6 col-xl-6 p-5 m-5" style="    background-color: #f4f4f4d1;
+                                                                                     border-radius: 30px;">
+                        <div class="row">
+                            <div class="col">
+                                <div class="form-progress">
+                                    <div class="step step-current"></div>
+                                    <div class="step"></div>
+                                    <div class="step"></div>
+                                    <div class="step"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <br />
+                        <form id="admin">
+                            <div id="step_1" class="row form-step d-none">
+                                <div class="col">
+                                    <h1 class="text-uppercase iq-font-white iq-tw-3">Get  <b class="iq-tw-7">Started</b> </h1>
+                                    <br />
+                                    <div class="form-group">
+                                        <label for="email">User Name</label>
+                                        <input type="text" class="form-control form-control-lg" id="text" placeholder="" required>
+                                        <i class="fas fa-exclamation-triangle sign d-none"></i>
+                                        <div class="font-label d-none"></div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="password">Password</label>
+                                        <input type="password" class="form-control form-control-lg" id="password" placeholder="" required>
+                                        <i class="fas fa-exclamation-triangle sign d-none"></i>
+                                        <div class="font-label d-none"></div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="comfirmPassword">Comfirm Password</label>
+                                        <input type="password" class="form-control form-control-lg" id="comfirmPassword" placeholder="" required>
+                                        <i class="fas fa-exclamation-triangle sign d-none"></i>
+                                        <div class="font-label d-none"></div>
+                                    </div>
+                                    <br />
+                                    <button type="button" class="btn btn-primary btn-lg"  style="background-color: #16b7b1;border-color: #16b7b1;" disabled>SUBMIT & NEXT</button>
+                                </div>
+                            </div>
+                            <div id="step_2" class="row form-step d-none">
+                                <div class="col">
+                                    <div class="font-title text-center">General Infomation</div>
+                                    <div class="font-subtitle text-center">Tell us who you are!</div>
+                                    <br />
+                                    <div class="form-row">
+                                        <div class="form-group col-6">
+                                            <label for="name" for="name">First Name</label>
+                                            <input type="text" class="form-control form-control-lg" id="name" required>
+                                        </div>
+
+                                        <div class="form-group col-6">
+                                            <label for="last">Last Name</label>
+                                            <input type="text" class="form-control form-control-lg" id="last" required>
+                                        </div>
+                                        <div class="form-group col-6">
+                                            <label for="phone">Phone</label>
+                                            <input type="text" class="form-control form-control-lg" id="phone" placeholder="000 000-0000" required>
+                                            <i class="fas fa-exclamation-triangle sign d-none"></i>
+                                            <div class="font-label d-none"></div>
+                                        </div>
+
+                                        <div class="form-group col-6">
+                                            <label for="phone">Email</label>
+                                            <input type="email" class="form-control form-control-lg" id="email" placeholder="name@email.com" required>
+                                            <i class="fas fa-exclamation-triangle sign d-none"></i>
+                                            <div class="font-label d-none"></div>
+                                        </div> 
+
+                                        <div class="form-group col-6">
+
+                                        </div>
+                                    </div>
+
+
+                                    <br />
+                                    <button type="button" class="btn btn-primary btn-lg"  style="background-color: #16b7b1;border-color: #16b7b1;" disabled>SUBMIT & NEXT</button>
+                                </div>
+                            </div>
+                            <div id="step_3" class="row form-step d-none">
+                                <div class="col">
+                                    <div class="font-title text-center">Company information</div>
+                                    <div class="font-subtitle text-center">We wanna know you more!</div>
+                                    <br />
+
+
+
+                                    <div class="form-row">
+                                        <label for="address3">Address</label>
+
+                                        <div class="form-group col-12">
+                                            <input type="text" class="form-control form-control-lg" id="address" placeholder="Address Detail" required>
+                                            <i class="fas fa-exclamation-triangle sign d-none"></i>
+                                            <div class="font-label d-none"></div>
+                                        </div>
+
+                                        <div class="form-group col-6">
+
+                                            <input type="text" class="form-control form-control-lg" id="locality" placeholder="City" required>
+                                            <i class="fas fa-exclamation-triangle sign d-none"></i>
+                                            <div class="font-label d-none"></div>
+                                        </div>
+                                        <div class="form-group col-6">
+
+                                            <input type="text" class="form-control form-control-lg" id="state" placeholder="State" required>
+                                            <i class="fas fa-exclamation-triangle sign d-none"></i>
+                                            <div class="font-label d-none"></div>
+                                        </div>    
+
+                                        <div class="form-group col-6">
+
+                                            <input type="text" class="form-control form-control-lg" id="postcode" placeholder="Zipcode" required>
+                                            <i class="fas fa-exclamation-triangle sign d-none"></i>
+                                            <div class="font-label d-none"></div>
+                                        </div>
+
+                                    </div> 
+
+
+                                    <br />
+                                    <button type="button" class="btn btn-primary btn-lg"  style="background-color: #16b7b1;border-color: #16b7b1;">SUBMIT & NEXT</button>
+                                </div>
+                            </div>
+                            <div id="step_4" class="row form-step d-none">
+                                <div class="col">
+                                    <div class="font-title text-center">Final Step</div>
+                                    <div class="font-subtitle text-center">Tell us about your company!</div>
+                                    <br />
+
+
+                                    <div class="form-row">
+
+
+                                        <div class="form-group col-12">
+                                            <label for="company">Company Name</label>
+                                            <input type="text" class="form-control form-control-lg" id="company" required>
+                                        </div>
+                                        <div class="form-group col-6">
+                                            <label for="phonecomp">Company phone</label>
+                                            <input type="text" class="form-control form-control-lg" id="phonecomp" placeholder="000 000-0000" >
+                                            <i class="fas fa-exclamation-triangle sign d-none"></i>
+                                            <div class="font-label d-none"></div>
+                                        </div>
+
+                                        <div class="form-group col-6">
+                                            <label for="phone">Time Zone</label>
+
+                                            <select name="rTimezone" size="1" class="form-control form-control-lg">
+                                                <option value="">[Select Timezone]</option>
+                                                <option timeZoneId="1" gmtAdjustment="GMT-12:00" useDaylightTime="0" value="-12">(GMT-12:00) International Date Line West</option>
+                                                <option timeZoneId="2" gmtAdjustment="GMT-11:00" useDaylightTime="0" value="-11">(GMT-11:00) Midway Island, Samoa</option>
+                                                <option timeZoneId="3" gmtAdjustment="GMT-10:00" useDaylightTime="0" value="-10">(GMT-10:00) Hawaii</option>
+                                                <option timeZoneId="4" gmtAdjustment="GMT-09:00" useDaylightTime="1" value="-9">(GMT-09:00) Alaska</option>
+                                                <option timeZoneId="5" gmtAdjustment="GMT-08:00" useDaylightTime="1" value="-8">(GMT-08:00) Pacific Time (US & Canada)</option>
+                                                <option timeZoneId="6" gmtAdjustment="GMT-08:00" useDaylightTime="1" value="-8">(GMT-08:00) Tijuana, Baja California</option>
+                                                <option timeZoneId="7" gmtAdjustment="GMT-07:00" useDaylightTime="0" value="-7">(GMT-07:00) Arizona</option>
+                                                <option timeZoneId="8" gmtAdjustment="GMT-07:00" useDaylightTime="1" value="-7">(GMT-07:00) Chihuahua, La Paz, Mazatlan</option>
+                                                <option timeZoneId="9" gmtAdjustment="GMT-07:00" useDaylightTime="1" value="-7">(GMT-07:00) Mountain Time (US & Canada)</option>
+                                                <option timeZoneId="10" gmtAdjustment="GMT-06:00" useDaylightTime="0" value="-6">(GMT-06:00) Central America</option>
+                                                <option timeZoneId="11" gmtAdjustment="GMT-06:00" useDaylightTime="1" value="-6">(GMT-06:00) Central Time (US & Canada)</option>
+                                                <option timeZoneId="12" gmtAdjustment="GMT-06:00" useDaylightTime="1" value="-6">(GMT-06:00) Guadalajara, Mexico City, Monterrey</option>
+                                                <option timeZoneId="13" gmtAdjustment="GMT-06:00" useDaylightTime="0" value="-6">(GMT-06:00) Saskatchewan</option>
+                                                <option timeZoneId="14" gmtAdjustment="GMT-05:00" useDaylightTime="0" value="-5">(GMT-05:00) Bogota, Lima, Quito, Rio Branco</option>
+                                                <option timeZoneId="15" gmtAdjustment="GMT-05:00" useDaylightTime="1" value="-5" selected>(GMT-05:00) Eastern Time (US & Canada)</option>
+                                                <option timeZoneId="16" gmtAdjustment="GMT-05:00" useDaylightTime="1" value="-5">(GMT-05:00) Indiana (East)</option>
+                                                <option timeZoneId="17" gmtAdjustment="GMT-04:00" useDaylightTime="1" value="-4">(GMT-04:00) Atlantic Time (Canada)</option>
+                                                <option timeZoneId="18" gmtAdjustment="GMT-04:00" useDaylightTime="0" value="-4">(GMT-04:00) Caracas, La Paz</option>
+                                                <option timeZoneId="19" gmtAdjustment="GMT-04:00" useDaylightTime="0" value="-4">(GMT-04:00) Manaus</option>
+                                                <option timeZoneId="20" gmtAdjustment="GMT-04:00" useDaylightTime="1" value="-4">(GMT-04:00) Santiago</option>
+                                                <option timeZoneId="21" gmtAdjustment="GMT-03:30" useDaylightTime="1" value="-3.5">(GMT-03:30) Newfoundland</option>
+                                                <option timeZoneId="22" gmtAdjustment="GMT-03:00" useDaylightTime="1" value="-3">(GMT-03:00) Brasilia</option>
+                                                <option timeZoneId="23" gmtAdjustment="GMT-03:00" useDaylightTime="0" value="-3">(GMT-03:00) Buenos Aires, Georgetown</option>
+                                                <option timeZoneId="24" gmtAdjustment="GMT-03:00" useDaylightTime="1" value="-3">(GMT-03:00) Greenland</option>
+                                                <option timeZoneId="25" gmtAdjustment="GMT-03:00" useDaylightTime="1" value="-3">(GMT-03:00) Montevideo</option>
+                                                <option timeZoneId="26" gmtAdjustment="GMT-02:00" useDaylightTime="1" value="-2">(GMT-02:00) Mid-Atlantic</option>
+                                                <option timeZoneId="27" gmtAdjustment="GMT-01:00" useDaylightTime="0" value="-1">(GMT-01:00) Cape Verde Is.</option>
+                                                <option timeZoneId="28" gmtAdjustment="GMT-01:00" useDaylightTime="1" value="-1">(GMT-01:00) Azores</option>
+                                                <option timeZoneId="29" gmtAdjustment="GMT+00:00" useDaylightTime="0" value="0">(GMT+00:00) Casablanca, Monrovia, Reykjavik</option>
+                                                <option timeZoneId="30" gmtAdjustment="GMT+00:00" useDaylightTime="1" value="0">(GMT+00:00) Greenwich Mean Time : Dublin, Edinburgh, Lisbon, London</option>
+                                                <option timeZoneId="31" gmtAdjustment="GMT+01:00" useDaylightTime="1" value="1">(GMT+01:00) Amsterdam, Berlin, Bern, Rome, Stockholm, Vienna</option>
+                                                <option timeZoneId="32" gmtAdjustment="GMT+01:00" useDaylightTime="1" value="1">(GMT+01:00) Belgrade, Bratislava, Budapest, Ljubljana, Prague</option>
+                                                <option timeZoneId="33" gmtAdjustment="GMT+01:00" useDaylightTime="1" value="1">(GMT+01:00) Brussels, Copenhagen, Madrid, Paris</option>
+                                                <option timeZoneId="34" gmtAdjustment="GMT+01:00" useDaylightTime="1" value="1">(GMT+01:00) Sarajevo, Skopje, Warsaw, Zagreb</option>
+                                                <option timeZoneId="35" gmtAdjustment="GMT+01:00" useDaylightTime="1" value="1">(GMT+01:00) West Central Africa</option>
+                                                <option timeZoneId="36" gmtAdjustment="GMT+02:00" useDaylightTime="1" value="2">(GMT+02:00) Amman</option>
+                                                <option timeZoneId="37" gmtAdjustment="GMT+02:00" useDaylightTime="1" value="2">(GMT+02:00) Athens, Bucharest, Istanbul</option>
+                                                <option timeZoneId="38" gmtAdjustment="GMT+02:00" useDaylightTime="1" value="2">(GMT+02:00) Beirut</option>
+                                                <option timeZoneId="39" gmtAdjustment="GMT+02:00" useDaylightTime="1" value="2">(GMT+02:00) Cairo</option>
+                                                <option timeZoneId="40" gmtAdjustment="GMT+02:00" useDaylightTime="0" value="2">(GMT+02:00) Harare, Pretoria</option>
+                                                <option timeZoneId="41" gmtAdjustment="GMT+02:00" useDaylightTime="1" value="2">(GMT+02:00) Helsinki, Kyiv, Riga, Sofia, Tallinn, Vilnius</option>
+                                                <option timeZoneId="42" gmtAdjustment="GMT+02:00" useDaylightTime="1" value="2">(GMT+02:00) Jerusalem</option>
+                                                <option timeZoneId="43" gmtAdjustment="GMT+02:00" useDaylightTime="1" value="2">(GMT+02:00) Minsk</option>
+                                                <option timeZoneId="44" gmtAdjustment="GMT+02:00" useDaylightTime="1" value="2">(GMT+02:00) Windhoek</option>
+                                                <option timeZoneId="45" gmtAdjustment="GMT+03:00" useDaylightTime="0" value="3">(GMT+03:00) Kuwait, Riyadh, Baghdad</option>
+                                                <option timeZoneId="46" gmtAdjustment="GMT+03:00" useDaylightTime="1" value="3">(GMT+03:00) Moscow, St. Petersburg, Volgograd</option>
+                                                <option timeZoneId="47" gmtAdjustment="GMT+03:00" useDaylightTime="0" value="3">(GMT+03:00) Nairobi</option>
+                                                <option timeZoneId="48" gmtAdjustment="GMT+03:00" useDaylightTime="0" value="3">(GMT+03:00) Tbilisi</option>
+                                                <option timeZoneId="49" gmtAdjustment="GMT+03:30" useDaylightTime="1" value="3.5">(GMT+03:30) Tehran</option>
+                                                <option timeZoneId="50" gmtAdjustment="GMT+04:00" useDaylightTime="0" value="4">(GMT+04:00) Abu Dhabi, Muscat</option>
+                                                <option timeZoneId="51" gmtAdjustment="GMT+04:00" useDaylightTime="1" value="4">(GMT+04:00) Baku</option>
+                                                <option timeZoneId="52" gmtAdjustment="GMT+04:00" useDaylightTime="1" value="4">(GMT+04:00) Yerevan</option>
+                                                <option timeZoneId="53" gmtAdjustment="GMT+04:30" useDaylightTime="0" value="4.5">(GMT+04:30) Kabul</option>
+                                                <option timeZoneId="54" gmtAdjustment="GMT+05:00" useDaylightTime="1" value="5">(GMT+05:00) Yekaterinburg</option>
+                                                <option timeZoneId="55" gmtAdjustment="GMT+05:00" useDaylightTime="0" value="5">(GMT+05:00) Islamabad, Karachi, Tashkent</option>
+                                                <option timeZoneId="56" gmtAdjustment="GMT+05:30" useDaylightTime="0" value="5.5">(GMT+05:30) Sri Jayawardenapura</option>
+                                                <option timeZoneId="57" gmtAdjustment="GMT+05:30" useDaylightTime="0" value="5.5">(GMT+05:30) Chennai, Kolkata, Mumbai, New Delhi</option>
+                                                <option timeZoneId="58" gmtAdjustment="GMT+05:45" useDaylightTime="0" value="5.75">(GMT+05:45) Kathmandu</option>
+                                                <option timeZoneId="59" gmtAdjustment="GMT+06:00" useDaylightTime="1" value="6">(GMT+06:00) Almaty, Novosibirsk</option>
+                                                <option timeZoneId="60" gmtAdjustment="GMT+06:00" useDaylightTime="0" value="6">(GMT+06:00) Astana, Dhaka</option>
+                                                <option timeZoneId="61" gmtAdjustment="GMT+06:30" useDaylightTime="0" value="6.5">(GMT+06:30) Yangon (Rangoon)</option>
+                                                <option timeZoneId="62" gmtAdjustment="GMT+07:00" useDaylightTime="0" value="7">(GMT+07:00) Bangkok, Hanoi, Jakarta</option>
+                                                <option timeZoneId="63" gmtAdjustment="GMT+07:00" useDaylightTime="1" value="7">(GMT+07:00) Krasnoyarsk</option>
+                                                <option timeZoneId="64" gmtAdjustment="GMT+08:00" useDaylightTime="0" value="8">(GMT+08:00) Beijing, Chongqing, Hong Kong, Urumqi</option>
+                                                <option timeZoneId="65" gmtAdjustment="GMT+08:00" useDaylightTime="0" value="8">(GMT+08:00) Kuala Lumpur, Singapore</option>
+                                                <option timeZoneId="66" gmtAdjustment="GMT+08:00" useDaylightTime="0" value="8">(GMT+08:00) Irkutsk, Ulaan Bataar</option>
+                                                <option timeZoneId="67" gmtAdjustment="GMT+08:00" useDaylightTime="0" value="8">(GMT+08:00) Perth</option>
+                                                <option timeZoneId="68" gmtAdjustment="GMT+08:00" useDaylightTime="0" value="8">(GMT+08:00) Taipei</option>
+                                                <option timeZoneId="69" gmtAdjustment="GMT+09:00" useDaylightTime="0" value="9">(GMT+09:00) Osaka, Sapporo, Tokyo</option>
+                                                <option timeZoneId="70" gmtAdjustment="GMT+09:00" useDaylightTime="0" value="9">(GMT+09:00) Seoul</option>
+                                                <option timeZoneId="71" gmtAdjustment="GMT+09:00" useDaylightTime="1" value="9">(GMT+09:00) Yakutsk</option>
+                                                <option timeZoneId="72" gmtAdjustment="GMT+09:30" useDaylightTime="0" value="9.5">(GMT+09:30) Adelaide</option>
+                                                <option timeZoneId="73" gmtAdjustment="GMT+09:30" useDaylightTime="0" value="9.5">(GMT+09:30) Darwin</option>
+                                                <option timeZoneId="74" gmtAdjustment="GMT+10:00" useDaylightTime="0" value="10">(GMT+10:00) Brisbane</option>
+                                                <option timeZoneId="75" gmtAdjustment="GMT+10:00" useDaylightTime="1" value="10">(GMT+10:00) Canberra, Melbourne, Sydney</option>
+                                                <option timeZoneId="76" gmtAdjustment="GMT+10:00" useDaylightTime="1" value="10">(GMT+10:00) Hobart</option>
+                                                <option timeZoneId="77" gmtAdjustment="GMT+10:00" useDaylightTime="0" value="10">(GMT+10:00) Guam, Port Moresby</option>
+                                                <option timeZoneId="78" gmtAdjustment="GMT+10:00" useDaylightTime="1" value="10">(GMT+10:00) Vladivostok</option>
+                                                <option timeZoneId="79" gmtAdjustment="GMT+11:00" useDaylightTime="1" value="11">(GMT+11:00) Magadan, Solomon Is., New Caledonia</option>
+                                                <option timeZoneId="80" gmtAdjustment="GMT+12:00" useDaylightTime="1" value="12">(GMT+12:00) Auckland, Wellington</option>
+                                                <option timeZoneId="81" gmtAdjustment="GMT+12:00" useDaylightTime="0" value="12">(GMT+12:00) Fiji, Kamchatka, Marshall Is.</option>
+                                                <option timeZoneId="82" gmtAdjustment="GMT+13:00" useDaylightTime="0" value="13">(GMT+13:00) Nuku'alofa</option>
+                                            </select>
+                                            <div class="font-label d-none"></div>
+                                        </div> 
+
+                                        <div class="form-group col-6">
+
+                                        </div>
+                                    </div>
+
+
+
+                                    <br />
+                                    <button type="button" class="btn btn-primary btn-lg" style="background-color: #16b7b1;border-color: #16b7b1;" disabled>DONE</button>
+                                </div>
+                            </div>
+                            <div id="step_5" class="row form-step d-none">
+                                <div class="col">
+                                    <div class="font-title text-center">Congratulations</div>
+                                    <div class="font-subtitle text-center">Now you’re one of us! </div>
+                                    <br />
+                                    <div class="form-group smile text-center">&#9787;</div>
+                                    <div class="font-final text-center">Redirected to homepage after 5 seconds…</div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="col"></div>
+                </div>
+            </div>
+
+            <!--            end form-->
+
+
+        </section>
+
+
+
+
+
+
+
+        <!-- Banner End -->
+        <!-- Main Content -->
+        <div class="main-content">
+
+
+
+
+
+            <!-- Clients -->
+            <!--
+<div class="iq-our-clients white-bg iq-ptb-50">
+<div class="container">
+<div class="row">
+<div class="col-lg-12 col-md-12">
+<div class="owl-carousel" data-autoplay="true" data-loop="true" data-nav="true" data-dots="false" data-items="5" data-items-laptop="5" data-items-tab="4" data-items-mobile="3" data-items-mobile-sm="1" data-margin="30" >
+<div class="item"> <img class="img-fluid center-block" src="images/clients/01.png" alt="#"></div>
+<div class="item"> <img class="img-fluid center-block" src="images/clients/02.png" alt="#"></div>
+<div class="item"> <img class="img-fluid center-block" src="images/clients/03.png" alt="#"></div>
+<div class="item"> <img class="img-fluid center-block" src="images/clients/04.png" alt="#"></div>
+<div class="item"> <img class="img-fluid center-block" src="images/clients/05.png" alt="#"></div>
+<div class="item"> <img class="img-fluid center-block" src="images/clients/06.png" alt="#"></div>
+<div class="item"> <img class="img-fluid center-block" src="images/clients/07.png" alt="#"></div>
+<div class="item"> <img class="img-fluid center-block" src="images/clients/08.png" alt="#"></div>
+<div class="item"> <img class="img-fluid center-block" src="images/clients/09.png" alt="#"></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+-->
+            <!-- Clients END -->
+        </div>
+        <!-- Main Content END -->
+        <!-- Footer -->
+        <footer>
+
+            <!-- Footer Info -->
+
+            <section class="footer-info iq-pt-60">
+                <div class="container">
+                    <div class="row justify-content-end">
+
+                        <div class="col-md-6   col-lg-3 r4-mt-30">
+                            <div class="iq-footer-box text-left">
+                                <div class="iq-icon">
+                                    <i aria-hidden="true" class="ion-ios-telephone-outline"></i>
+                                </div>
+                                <div class="footer-content">
+                                    <h4 class="iq-tw-6 iq-pb-10">Phone</h4>
+                                    <p>+0123 456 789
+                                        <br>Mon-Fri 8:00am - 8:00pm
+                                        <br>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-lg-3 r-mt-30">
+                            <div class="iq-footer-box text-left">
+                                <div class="iq-icon">
+                                    <i aria-hidden="true" class="ion-ios-email-outline"></i>
+                                </div>
+                                <div class="footer-content">
+                                    <h4 class="iq-tw-6 iq-pb-10">Mail</h4>
+                                    <p>support@sofbox.com
+                                        <br>24 X 7 online support
+                                        <br>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-lg-3 align-self-center">
+                            <ul class="info-share">
+                                <li><a href="javascript:void(0)"><i class="fa fa-twitter"></i></a></li>
+                                <li><a href="javascript:void(0)"><i class="fa fa-facebook"></i></a></li>
+                                <li><a href="javascript:void(0)"><i class="fa fa-google"></i></a></li>
+                                <li><a href="javascript:void(0)"><i class="fa fa-github"></i></a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="row iq-mt-40">
+                        <div class="col-sm-12 text-center">
+                            <div class="footer-copyright iq-ptb-20">Copyright @<span id="copyright"> <script>document.getElementById('copyright').appendChild(document.createTextNode(new Date().getFullYear()))</script></span> <a href="javascript:void(0)" class="text-green">PACMAN Software</a> All Rights Reserved </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <!-- Footer Info END -->
+        </footer>
+        <!-- Footer END -->
+        <!-- back-to-top -->
+        <div id="back-to-top">
+            <a class="top" id="top" href="#top"> <i class="ion-ios-upload-outline"></i> </a>
+        </div>
+        <!-- back-to-top End -->
+
+        <!-- Optional JavaScript -->
+        <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+        <script src="js/jquery-3.3.1.min.js"></script>
+        <script src="js/popper.min.js"></script>
+        <script src="js/bootstrap.min.js"></script>
+        <!-- Main js -->
+        <script src="js/main.js"></script>
+        <!-- Particles -->
+        <script src="js/particles/particles.min.js"></script>
+        <script src="js/particles/app.js"></script>
+        <!-- Google captcha code Js -->
+        <script src='https://www.google.com/recaptcha/api.js'></script>
+        <!-- Custom -->
+        <script src="js/custom.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/card/2.4.0/jquery.card.min.js"></script>
+
+
+
+        <script
+                type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBKrpS-lWiKrVMxtslLoTQtF02K9wF4EkQ&amp;libraries=places"
+
+                ></script>
+
+
+
+
+        <script>
+
+
+            $(document).ready(function() {
+                // Init
+                let current_step = 0;
+                $(".form-step")
+                    .eq(current_step)
+                    .removeClass("d-none");
+
+                // Next page
+                $(".form-step button").click(function() {
+                    $(".step")
+                        .eq(current_step)
+                        .addClass("step-done");
+                    $(".step")
+                        .eq(current_step)
+                        .removeClass("step-current");
+                    $(".step")
+                        .eq(current_step)
+                        .append('<i class="fas fa-check"></i>');
+                    $(".form-step")
+                        .eq(current_step)
+                        .addClass("d-none");
+                    current_step++;
+                    $(".form-step")
+                        .eq(current_step)
+                        .removeClass("d-none");
+                    if (current_step < 4) {
+                        $(".step")
+                            .eq(current_step)
+                            .addClass("step-current");
+                    }
+                    
+                    
+                });
+
+                $("input").keyup(function() {
+                    let current_input = $(this);
+                    let id = current_input.attr("id");
+                    let value = current_input.val();
+                    let message = valid[id](value);
+                    if (message !== true) {
+                        current_input
+                            .parent()
+                            .children(".font-label")
+                            .text(message)
+                            .removeClass("d-none");
+                        current_input
+                            .addClass("warning")
+                            .parent()
+                            .children(".sign")
+                            .removeClass("d-none");
+                    } else {
+                        current_input
+                            .parent()
+                            .children(".font-label")
+                            .text("")
+                            .addClass("d-none");
+                        current_input
+                            .removeClass("warning")
+                            .parent()
+                            .children(".sign")
+                            .addClass("d-none");
+                    }
+                    
+                    formValidation(current_step);
+                });
+
+
+
+            });
+
+            function formValidation(step) {
+                let access = true;
+                $(".form-step")
+                    .eq(step)
+                    .find("input")
+                    .each(function() {
+                    if ($(this).prop("required")) {
+                        access = access && $(this).val() !== "";
+                        console.log('1');
+                        console.log(access);
+                    }
+                });
+                $(".form-step")
+                    .eq(step)
+                    .find(".font-label")
+                    .each(function() {
+                    access = access && $(this).text() === "";
+                    console.log('2');
+                    console.log(access);
+                });
+
+                if (access) {
+                    $(".form-step")
+                        .eq(step)
+                        .find("button")
+                        .prop("disabled", false);
+                } else {
+                    $(".form-step")
+                        .eq(step)
+                        .find("button")
+                        .prop("disabled", true);
+                }
+            }
+
+            let valid = {
+                email(input) {
+                    let regex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/; // 
+                    if (regex.test(input)) {
+                        return true;
+                    } else {
+                        return "INVALID EMAIL";
+                    }
+                },
+                password(input) {
+                    let c_password = $("#comfirmPassword").val();
+                    if (c_password) {
+                        $("#comfirmPassword").trigger("focusout");
+                    }
+
+                    if (input.length >= 5) {
+                        return true;
+                    } else {
+                        return "MINIMUM 5 CHARACTERS";
+                    }
+                },
+                comfirmPassword(input) {
+                    let password = $("#password").val();
+                    if (input === password) {
+                        return true;
+                    } else {
+                        return "NOT MATCH";
+                    }
+                },
+                name(input) {
+                    return true;
+                },
+                phone(input) {
+                    let regex = /^\d+$/;
+                    if (regex.test(input)) {
+                        return true;
+                    } else {
+                        return "NUMBERS ONLY";
+                    }
+                },
+                birth(input) {
+                    return true;
+                },
+                address(input) {
+                    if (input) {
+                        return true;
+                    } else {
+                        return "REQUIRED FILED";
+                    }
+                },
+                company(input) {
+                    if (input) {
+                        return true;
+                    } else {
+                        return "REQUIRED FILED";
+                    }
+                },
+                address3(input) {
+                    if (input) {
+                        return true;
+                    } else {
+                        return "REQUIRED FILED";
+                    }
+                },
+
+                
+            };
+
+
+
+
+            googleAutocomplete = {
+                autocompleteField: function(fieldId) {
+                    (autocomplete = new google.maps.places.Autocomplete(
+                        document.getElementById(fieldId)
+                    )),
+                        { types: ["geocode"] };
+                    google.maps.event.addListener(autocomplete, "place_changed", function() {
+                        // Segment results into usable parts.
+                        var place = autocomplete.getPlace(),
+                            address = place.address_components,
+                            lat = place.geometry.location.lat(),
+                            lng = place.geometry.location.lng();
+
+
+                        for (var i = 0; i < address.length; i++) {
+                            var component = address[i].types[0];
+                            switch (component) {
+                                case "country":
+
+                                    // document.getElementById("country").value = address[i]["long_name"];
+
+                                    console.log(address[i]["long_name"])
+
+
+                                    break;
+                                case "administrative_area_level_1":
+                                    document.getElementById("state").value = address[i]["long_name"];
+                                    console.log(address[i]["long_name"])
+                                    break;
+                                case "locality":
+                                    document.getElementById("locality").value = address[i]["long_name"];
+                                    console.log(address[i]["long_name"])
+                                    break;
+                                case "postal_code":
+                                    document.getElementById("postcode").value = address[i]["long_name"];
+                                    console.log(address[i]["long_name"])
+                                    break;
+                                case "route":
+                                    console.log( address[i]["long_name"]);
+                                    break;
+                                case "street_number":
+                                    console.log( address[i]["long_name"])
+                                    break;
+                                default:
+                                    break;
+                            }
+                        }
+
+
+formValidation(2);
+                    });
+                    
+                }
+            };
+
+
+            googleAutocomplete.autocompleteField("address");
+            
+
+
+        </script>
+
+    </body>
+
+</html>
